@@ -10,7 +10,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 
     <!-- font awesome -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- bootstrap -->
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
@@ -103,10 +103,8 @@
             </div>
             <!-- #Item 1 -->
         </div>
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon-chevron-left"><i
-                class="fa fa-angle-left"></i></span></a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon-chevron-right"><i
-                class="fa fa-angle-right"></i></span></a>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="fa fa-angle-left" style="top:50% !important; position:absolute !important; font-size:50px !important;"></i></a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="fa fa-angle-right" style="top:50% !important; position:absolute !important; font-size:50px !important;"></i></a>
     </div>
     <!-- #Slider Ends -->
 </div>
@@ -346,18 +344,61 @@
 
 
 <div id="contact" class="spacer">
-    <!--Contact Starts-->
+    <!--Contact Starts-->		
     <div class="container contactform center">
-        <h2 class="text-center  wowload fadeInUp">Skontaktuj się z nami</h2>
-        <div class="row wowload fadeInLeftBig">
-            <div class="col-sm-6 col-sm-offset-3 col-xs-12">
-                <input type="text" placeholder="Imie">
-                <input type="text" placeholder="Nazwisko">
-                <textarea rows="5" placeholder="Wiadomość"></textarea>
-                <button class="btn btn-primary"><i class="fa fa-paper-plane"></i> Wyślij</button>
-            </div>
-        </div>
+	
+		<iframe class="col-sm-6" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5872.732945402967!2d20.306774220523888!3d50.88447757052226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47177f97f6bcce7f%3A0x5c8b45cebe9dc9c7!2sFanis%C5%82awiczki+81%2C+26-070+Fanis%C5%82awiczki%2C+Poland!5e0!3m2!1sen!2smt!4v1499926967420" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		<div class="col-sm-6">
+		
+		<?php
+$action=$_REQUEST['action'];
+if ($action=="")    /* display the contact form */
+    {
+    ?>
+	<h2 class="text-right  wowload fadeInUp">Skontaktuj się z nami</h2>
+    <form  action="" method="POST" enctype="multipart/form-data">
+	<div class="col-sm-12 col-sm-offset-2 col-xs-12">
+    <input type="hidden" name="action" value="submit">
+    Your name:<br>
+    <input name="name" type="text" value="" size="30"/><br>
+    Your email:<br>
+    <input name="email" type="text" value="" size="30"/><br>
+    Your message:<br>
+    <textarea name="message" rows="7" cols="30"></textarea><br>
+    <input class="btn btn-primary" type="submit" value="Wyślij"/>
+	</div>
+    </form>
+    <?php
+    } 
+else                
+    {
+    $name=$_REQUEST['name'];
+    $email=$_REQUEST['email'];
+    $message=$_REQUEST['message'];
+    if (($name=="")||($email=="")||($message==""))
+        {
+		echo "All fields are required, please fill <a href=\"\">the form</a> again.";
+	    }
+    else{		
+	    $from="From: $name<$email>\r\nReturn-path: $email";
+        $subject="Message sent using your contact form";
+		// mail("youremail@yoursite.com", $subject, $message, $from);
+		echo "Email sent!";
+	    }
+    }  
+?>
 
+		
+			<!--h2 class="text-right  wowload fadeInUp">Skontaktuj się z nami</h2>
+			<div class="row wowload fadeInLeftBig">
+				<div class="col-sm-12 col-sm-offset-2 col-xs-12">
+					<input type="text" placeholder="Imie">
+					<input type="text" placeholder="Nazwisko">
+					<textarea rows="5" placeholder="Wiadomość"></textarea>
+					<button class="btn btn-primary"><i class="fa fa-paper-plane"></i> Wyślij</button>
+				</div>
+			</div-->
+		</div>
 
     </div>
 </div>
